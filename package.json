@@ -1,0 +1,24 @@
+{
+  "name": "p5js-typescript",
+  "version": "1.0.0",
+  "description": "p5 sketches in typescript",
+  "main": "index.html",
+  "autor": "a.kolyan",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@types/p5": "0.9.0",
+    "p5": "0.9.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.6.1",
+    "sass": "^1.63.6",
+    "typescript": "^5.1.6"
+  },
+  "keywords": [
+    "p5js",
+    "typescript"
+  ]
+}
