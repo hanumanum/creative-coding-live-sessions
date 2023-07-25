@@ -17,6 +17,6 @@ export const PALLETTES = {
     mycustom2: ["#fd00ff", "#fdff00", "#00ff38", "#00f9ff", "#3c00ff"]
 }
 
-export function getRandomColorFrom(pallete: string[]) {
+export const getRandomColorFrom = (pallete: string[]) => {
     return pallete[Math.floor(Math.random() * pallete.length)]
 }

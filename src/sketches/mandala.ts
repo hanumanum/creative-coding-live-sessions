@@ -1,19 +1,11 @@
 import P5 from 'p5';
 import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { rotateAround } from '../lib/utils';
 
 const centerX = 450
 const centerY = 450
 let angle = 0
 
-
-const rotateAround = (p5: P5, x: number, y: number, angle: number, callback: Function) => {
-    p5.translate(x, y);
-    p5.rotate(angle);
-    callback();
-    p5.rotate(-angle);
-    p5.translate(-x, -y);
-
-}
 
 const ellipseAndRect = (p5: P5, radius1: number, radius2: number, w: number, h: number) => {
     p5.strokeWeight(1);
@@ -21,9 +13,7 @@ const ellipseAndRect = (p5: P5, radius1: number, radius2: number, w: number, h: 
     p5.rect(0, 0, w, h);
 }
 
-
 export const mandala = (p5: P5) => {
-
 
     p5.setup = () => {
         const canvas = p5.createCanvas(900, 900);
