@@ -1,8 +1,5 @@
 import P5 from 'p5';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
 import { garden_circular, garden_greed, garden_random } from '../lib/gardens';
-import { TEllipse, TPoint } from '../lib/types';
-import { getRandomNumber } from '../lib/math';
 import { ellipseFromPoint } from '../lib/utils';
 import { drawEllipse, drawPoint } from '../lib/drawers';
 import { changeColor, collapse, expand, tikkle } from '../lib/mutators';
@@ -44,6 +41,4 @@ export const space = (p5: P5) => {
         ellipses.forEach(_drawEllipse)
         //points.forEach(_drawPoint)
     }
-
-
 };
