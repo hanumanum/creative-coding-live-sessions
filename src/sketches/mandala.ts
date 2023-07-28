@@ -6,7 +6,6 @@ const centerX = 450
 const centerY = 450
 let angle = 0
 
-
 const ellipseAndRect = (p5: P5, radius1: number, radius2: number, w: number, h: number) => {
     p5.strokeWeight(1);
     p5.ellipse(0, 0, radius1, radius2);
