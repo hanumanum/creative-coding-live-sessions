@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/p5": "0.9.0",
+    "lib": "^5.0.1",
     "p5": "0.9.0"
   },
   "devDependencies": {
