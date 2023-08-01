@@ -2,14 +2,14 @@ import P5 from 'p5';
 import { garden_circular, garden_greed, garden_random } from '../lib/gardens';
 import { ellipseFromPoint } from '../lib/utils';
 import { drawEllipse, drawPoint } from '../lib/drawers';
-import { changeColor, collapse, expand, tikkle } from '../lib/mutators';
+import {changeColor, collapse, expand, osscilate, tikkle, toCenter} from '../lib/mutators';
 
 const centerX = 450
 const centerY = 450
 
 const amglRad = ((2 * Math.PI) / 360) * 20
 let points = garden_greed(900, 900, 100, 100);
-points = points.concat(garden_circular(centerX, centerY, 300, amglRad))
+//points = points.concat(garden_circular(centerX, centerY, 300, amglRad))
 
 let ellipses = points.map(ellipseFromPoint);
 
@@ -30,6 +30,8 @@ export const space = (p5: P5) => {
             //.map(moveToTop)
             .map(changeColor)
             .map(tikkle)
+            .map(osscilate)
+            .map(toCenter)
 
         if (p5.frameCount > 1000) {
             ellipses = ellipses.map(expand)

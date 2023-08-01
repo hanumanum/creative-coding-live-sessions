@@ -14,8 +14,8 @@ export const rotateAround = (p5: P5, x: number, y: number, angle: number, callba
 export const ellipseFromPoint = (point: TPoint): TEllipse => {
     return {
         ...point,
-        radius1: getRandomNumber(25, 50),
-        radius2: getRandomNumber(25, 50),
+        radius1: getRandomNumber(10, 70),
+        radius2: getRandomNumber(10, 70),
         color: getRandomColorFrom(PALLETTES.rainbow)
     }
 }
