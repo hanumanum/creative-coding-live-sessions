@@ -1,5 +1,5 @@
 import { PALLETTES, getRandomColorFrom } from './colors';
-import { TEllipse } from './types';
+import { TEllipse, TPoint } from './types';
 import { getRandomNumber } from './math';
 
 export const moveToTop = (ellipse: TEllipse): TEllipse => {

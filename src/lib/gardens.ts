@@ -26,11 +26,33 @@ export const garden_circular = (x: number, y: number, radius: number, angle: num
     const points: TPoint[] = [];
 
     for (let a = 0; a < 2 * Math.PI - 0.1; a += angle) {
-        console.log(a)
         const _x = x + radius * Math.cos(a);
         const _y = y + radius * Math.sin(a);
 
         points.push({ x: _x, y: _y });
+    }
+
+    return points;
+}
+
+export const garden_epicycloid = (R: number, r: number, cx: number, cy: number): TPoint[] => {
+    const points: TPoint[] = [];
+    for (let th = 0; th < 60 * Math.PI; th += 0.05) {
+        const px = (R + r) * Math.cos(th) - r * Math.cos((R + r) / r * th) + cx;
+        const py = (R + r) * Math.sin(th) - r * Math.sin((R + r) / r * th) + cy;
+        points.push({ x: px, y: py });
+    }
+
+    return points;
+}
+
+
+export const garden_butterfly = (cx: number, cy: number, zoom:number, p1:number): TPoint[] => {
+    const points: TPoint[] = [];
+    for (let th = 0; th < 12 * Math.PI; th += 0.01) {
+        const px = Math.sin(th) * (Math.exp(Math.cos(th)) - p1 * Math.cos(4 * th) - Math.pow(Math.sin(th / 12), 5)) * zoom + cx;
+        const py = -Math.cos(th) * (Math.exp(Math.cos(th)) - p1 * Math.cos(4 * th) - Math.pow(Math.sin(th / 12), 5)) * zoom + cy;
+        points.push({ x: px, y: py });
     }
 
     return points;
