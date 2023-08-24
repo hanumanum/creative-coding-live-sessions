@@ -4,19 +4,39 @@ export type TPoint = {
     y: number;
 }
 
-export type TEllipse = {
+export type TWalls = {
+    w: number,
+    h: number,
+    padding: number
+}
+
+export type TEllipse = TPoint & {
     radius1: number;
     radius2: number;
     color: string;
-} & TPoint
+}
 
 
-export type TMovable = {
+export type TMovableBasic = {
     position: Vector,
     velocity: Vector,
-    acceleration: Vector,
+    acceleration?: Vector
+}
+
+export type TMovableCircle = TMovableBasic & {
     color: string,
     size: number,
     fill: boolean
-    move: () => TMovable
+    move: () => TMovableCircle
+}
+
+
+export type THidra = TMovableBasic & {
+    firstAnchor: TPoint[],
+    firstControl: TPoint[],
+    secondControl: TPoint[],
+    secondAnchor: TPoint[],
+    secondAnchorAdditional: TPoint[],
+    color: string,
+    move?: () => THidra
 }
