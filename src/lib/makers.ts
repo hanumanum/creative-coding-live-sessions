@@ -38,7 +38,6 @@ export const makeHidra = (p5: P5) => (walls: TWalls, palette: string[], minRad: 
         firstControl: garden_circular(position.x, position.y, minRad + 20, Math.PI / 2),
         secondControl: garden_circular(position.x, position.y, minRad + 40, Math.PI / 3),
         secondAnchor: garden_circular(position.x, position.y, minRad + 50, Math.PI / 6),
-        secondAnchorAdditional: garden_circular(position.x, position.y, minRad + 60, Math.PI / 6),
         color: getRandomColorFrom(palette),
         move: (): THidra => {
             hidra.position = hidra.position.add(hidra.velocity)
@@ -49,12 +48,9 @@ export const makeHidra = (p5: P5) => (walls: TWalls, palette: string[], minRad: 
                 firstControl: garden_circular(hidra.position.x, hidra.position.y, minRad + 20, Math.PI / 2),
                 secondControl: garden_circular(hidra.position.x, hidra.position.y, minRad + 40, Math.PI / 3),
                 secondAnchor: garden_circular(hidra.position.x, hidra.position.y, minRad + 50, Math.PI / 6),
-                secondAnchorAdditional: garden_circular(hidra.position.x, hidra.position.y, minRad + 60, Math.PI / 6),
             } as THidra
         }
     }
-
-
 
     return hidra
 }

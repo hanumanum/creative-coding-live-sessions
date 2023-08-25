@@ -24,6 +24,16 @@ export const drawConnectAll = (p5: P5) => (points: TPoint[]) => {
     })
 }
 
+export const drawConnectSome = (p5: P5) => (points: TPoint[]) => {
+    points.forEach((point, index) => {
+        points.forEach((point2, index2) => {
+            if (index !== index2 && index2) {
+                p5.line(point.x, point.y, point2.x, point2.y)
+            }
+        })
+    })
+}
+
 
 export const drawVertex = (p5: P5) => (point: TPoint) => {
     p5.vertex(point.x, point.y);

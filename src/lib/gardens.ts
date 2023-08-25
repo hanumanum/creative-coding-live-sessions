@@ -25,7 +25,7 @@ export const garden_random = (count: number, w: number, h: number): TPoint[] => 
 export const garden_circular = (x: number, y: number, radius: number, angle: number): TPoint[] => {
     const points: TPoint[] = [];
 
-    for (let a = 0; a < 2 * Math.PI - 0.1; a += angle) {
+    for (let a = Math.PI / 6; a < 2 * Math.PI + Math.PI / 6; a += angle) {
         const _x = x + radius * Math.cos(a);
         const _y = y + radius * Math.sin(a);
 
@@ -47,7 +47,7 @@ export const garden_epicycloid = (R: number, r: number, cx: number, cy: number):
 }
 
 
-export const garden_butterfly = (cx: number, cy: number, zoom:number, p1:number): TPoint[] => {
+export const garden_butterfly = (cx: number, cy: number, zoom: number, p1: number): TPoint[] => {
     const points: TPoint[] = [];
     for (let th = 0; th < 12 * Math.PI; th += 0.01) {
         const px = Math.sin(th) * (Math.exp(Math.cos(th)) - p1 * Math.cos(4 * th) - Math.pow(Math.sin(th / 12), 5)) * zoom + cx;

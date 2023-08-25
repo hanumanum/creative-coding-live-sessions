@@ -7,7 +7,7 @@ import { getRandomNumber } from '../lib/math';
 import { garden_circular } from '../lib/gardens';
 import { bounceFromWalls } from '../lib/mutators.vector';
 import { makeHidra } from '../lib/makers';
-import { drawHidra } from '../lib/drawers';
+import { drawHidra, drawPoint } from '../lib/drawers';
 
 const walls: TWalls = {
     w: document.documentElement.clientWidth,
@@ -15,7 +15,12 @@ const walls: TWalls = {
     padding: 3
 }
 
-const length = 50
+let center: TPoint = {
+    x: walls.w / 2,
+    y: walls.h / 2
+}
+
+const length = 20
 const palette = PALLETTES.greengray
 
 
@@ -34,14 +39,13 @@ export const hidra_world = (p5: P5) => {
 
     p5.draw = () => {
         p5.background(0, 20);
-        p5.noFill() //TODO: remove at the end
-
+        //p5.noFill() //TODO: remove at the end
+        
         hidras = hidras
-            .map(bounce)
             .map(move)
+            .map(bounce)
 
         hidras.forEach(draw)
-
     }
 
 };

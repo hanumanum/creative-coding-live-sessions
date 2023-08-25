@@ -36,7 +36,6 @@ export type THidra = TMovableBasic & {
     firstControl: TPoint[],
     secondControl: TPoint[],
     secondAnchor: TPoint[],
-    secondAnchorAdditional: TPoint[],
     color: string,
     move?: () => THidra
 }
