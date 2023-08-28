@@ -1,10 +1,6 @@
-//INCOMPLETE
-
-import P5, { Vector } from 'p5';
-import { TPoint, TMovableCircle, TWalls, THidra } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
-import { getRandomNumber } from '../lib/math';
-import { garden_circular } from '../lib/gardens';
+import P5 from 'p5';
+import { TWalls, THidra } from '../lib/types';
+import { PALLETTES,  } from '../lib/colors';
 import { bounceFromWalls } from '../lib/mutators.vector';
 import { makeHidra } from '../lib/makers';
 import { drawHidra, drawPoint } from '../lib/drawers';
@@ -15,14 +11,8 @@ const walls: TWalls = {
     padding: 3
 }
 
-let center: TPoint = {
-    x: walls.w / 2,
-    y: walls.h / 2
-}
-
 const length = 20
 const palette = PALLETTES.greengray
-
 
 export const hidra_world = (p5: P5) => {
     let hidras = Array.from({ length }, () => makeHidra(p5)(walls, palette, 20))
@@ -47,5 +37,4 @@ export const hidra_world = (p5: P5) => {
 
         hidras.forEach(draw)
     }
-
 };
