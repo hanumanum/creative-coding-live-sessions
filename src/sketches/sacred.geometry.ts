@@ -1,16 +1,13 @@
 //INCOMPLETE
 
-import P5, { Vector } from 'p5';
-import { TPoint, TMovableCircle, TWalls, THidra } from '../lib/types';
+import P5 from 'p5';
+import { TPoint, TWalls } from '../lib/types';
 import { PALLETTES, getRandomColorFrom } from '../lib/colors';
-import { getRandomNumber } from '../lib/math';
 import { garden_circular } from '../lib/gardens';
-import { bounceFromWalls } from '../lib/mutators.vector';
-import { makeHidra } from '../lib/makers';
-import { drawConnectAll, drawHidra, drawConnectSome } from '../lib/drawers';
+import { drawCircle, drawConnectSome, drawPoint } from '../lib/drawers';
 import { circularArray } from '../lib/data.structures';
+import { rotateAround } from '../lib/utils';
 
-let isLooping = true
 const walls: TWalls = {
     w: document.documentElement.clientWidth,
     h: document.documentElement.clientHeight,
@@ -22,68 +19,93 @@ const center = {
 }
 
 const length = 50
-const palette = PALLETTES.fullrainbow
-const radius = 180
+const palette = PALLETTES.neorustic
 
 const filters = circularArray([
-    (point: TPoint, index: number, array: TPoint[]): boolean => Math.random() > 0.5, //Random
+    //(point: TPoint, index: number, array: TPoint[]): boolean => index < 8,
+    (point: TPoint, index: number, array: TPoint[]): boolean => true // index >= 8 && index < 14,
+   /* (point: TPoint, index: number, array: TPoint[]): boolean => index >= 14,
+    (point: TPoint, index: number, array: TPoint[]): boolean => index >= 14 && index % 2 === 0,
+
+    (point: TPoint, index: number, array: TPoint[]): boolean => index < 13 && index >= 9,
     (point: TPoint, index: number, array: TPoint[]): boolean => index < array.length / 2 && index % 2 === 0,
     (point: TPoint, index: number, array: TPoint[]): boolean => index <= array.length / 2 && index % 2 === 1,
-    (point: TPoint, index: number, array: TPoint[]): boolean => index >= array.length / 2 && index % 2 === 0,
+    // (point: TPoint, index: number, array: TPoint[]): boolean => index >= array.length / 2 && index % 2 === 0,
     (point: TPoint, index: number, array: TPoint[]): boolean => index >= array.length / 2,
     (point: TPoint, index: number, array: TPoint[]): boolean => index % 2 === 0,
- 
+
+
+
     (point: TPoint, index: number, array: TPoint[]): boolean => index % 2 === 0, //
     (point: TPoint, index: number, array: TPoint[]): boolean => index % 2 === 1, //
-    (point: TPoint, index: number, array: TPoint[]): boolean => point.y < center.y, //Almaz to top
-    (point: TPoint, index: number, array: TPoint[]): boolean => point.y > center.y, //Almaz to bottom
+    //(point: TPoint, index: number, array: TPoint[]): boolean => point.y < center.y, //Almaz to top
+    //(point: TPoint, index: number, array: TPoint[]): boolean => point.y > center.y, //Almaz to bottom
     (point: TPoint, index: number, array: TPoint[]): boolean => true, //All
-    
- ]
+    */
+]
 )
 
-const drawCircle = (p5: P5) => (radius: number) => (point: TPoint) => {
-    p5.strokeWeight(1)
-    p5.circle(point.x, point.y, radius)
-}
-
+const clrs = circularArray(palette)
 
 export const sacred_geometry = (p5: P5) => {
-    const _drawCircle = drawCircle(p5)(radius)
+    let radius = 80
+    let isLooping = true
 
     p5.setup = () => {
         const canvas = p5.createCanvas(walls.w, walls.h);
         canvas.parent("app");
-        p5.frameRate(1)
+        p5.frameRate(15)
         p5.background(0);
     };
 
     p5.draw = () => {
+        const _drawCircle = drawCircle(p5)(radius)
+        const _drawCircle2 = drawCircle(p5)(10)
 
         p5.background(0);
-        //p5.translate(center.x, center.y)
-        //p5.rotate(p5.frameCount / 0.1)
-
         const circle2 = garden_circular(center.x, center.y, radius, Math.PI / 3)
         const circle3 = garden_circular(center.x, center.y, radius * 2, Math.PI / 3)
-        const all = [center, ...circle2, ...circle3]
+        // const circle4 = garden_circular(0, 0, radius * 3, Math.PI / 6)
+        const all = [center, ...circle2, ...circle3, /* ...circle4 */]
 
-        const currentFiter  = filters.next()
+        const currentFiter = (p5.frameCount % 17 === 0) ? filters.next() : filters.same()
+        const clr = (p5.frameCount % 5 === 0) ? clrs.next() : clrs.same();
         const filtered = all.filter(currentFiter)
+       
+        const reducer = (acc, curr, index, array) => {
+            array.forEach((point) => {
+                if(curr !== point){
+                    acc.push([curr, point])
+                }
+                
+            })
+            
+            return acc
+        }
+       
+        const pairs = filtered.reduce(reducer, [])
+
 
         p5.noFill()
-        p5.stroke(getRandomColorFrom(palette))
+        p5.stroke("white")
         all.forEach(_drawCircle)
-        
-        p5.stroke(getRandomColorFrom(palette))
-        p5.strokeWeight(5)
-        drawConnectSome(p5)(filtered)
+        //all.forEach(_drawCircle2)
+
+        p5.stroke("white")
+        p5.strokeWeight(2)
+        //drawConnectSome(p5)(filtered)
+        p5.stroke("red")
+        filtered.forEach(drawPoint(p5))
+        pairs.forEach((pair) => {
+            p5.line(pair[0].x, pair[0].y, pair[1].x, pair[1].y)
+        })
+
 
         p5.strokeWeight(1)
         p5.noStroke()
         p5.fill("white")
         p5.textSize(20);
-        p5.text(currentFiter, 50, 50);
+        p5.text(filters.same(), 50, 50);
 
     }
 

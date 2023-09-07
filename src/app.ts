@@ -4,5 +4,6 @@ import "./styles.scss";
 import { hidra_world } from './sketches/hidra';
 import { vectors } from "./sketches/vectors";
 import { sacred_geometry } from './sketches/sacred.geometry';
+import { alphabets } from './sketches/alphabet';
 
-new P5(hidra_world);
+new P5(alphabets);

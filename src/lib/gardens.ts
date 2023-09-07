@@ -1,5 +1,6 @@
 import { getRandomNumber } from "./math";
-import { TPoint } from "./types";
+import { TPoint, TWalls } from "./types";
+import P5 from 'p5';
 
 export const garden_greed = (w: number, h: number, stepW: number, stepH: number): TPoint[] => {
     const points: TPoint[] = [];
@@ -54,6 +55,30 @@ export const garden_butterfly = (cx: number, cy: number, zoom: number, p1: numbe
         const py = -Math.cos(th) * (Math.exp(Math.cos(th)) - p1 * Math.cos(4 * th) - Math.pow(Math.sin(th / 12), 5)) * zoom + cy;
         points.push({ x: px, y: py });
     }
+
+    return points;
+}
+
+export const textGarden = (p5: P5) => (text: string, fontSize: number, gridSize: number, center: TPoint, walls: TWalls): TPoint[] => {
+    const points: TPoint[] = []
+
+    p5.background(0);
+    p5.textSize(fontSize);
+    p5.fill(255)
+    p5.textSize(fontSize)
+    p5.text(text, center.x, center.y)
+
+    p5.loadPixels()
+    //TODO: optimize this, use center and boundaries of text 
+    for (let y = 0; y < walls.h; y += gridSize) {
+        for (let x = 0; x < walls.w; x += gridSize) {
+            let px = p5.get(x, y)
+            if (px[0] > 127) {
+                points.push({ x, y })
+            }
+        }
+    }
+    //p5.background(0)
 
     return points;
 }

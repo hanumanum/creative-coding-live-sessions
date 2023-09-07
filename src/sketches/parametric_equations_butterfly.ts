@@ -4,7 +4,7 @@ import P5 from 'p5';
 import { TPoint } from '../lib/types';
 import { PALLETTES, getRandomColorFrom } from '../lib/colors';
 import { garden_greed, garden_butterfly } from '../lib/gardens';
-import { drawConnectAll, drawPoint, drawVertex } from '../lib/drawers';
+import { drawPoint, drawVertex } from '../lib/drawers';
 
 
 export const butterfly_curve = (p5: P5) => {
