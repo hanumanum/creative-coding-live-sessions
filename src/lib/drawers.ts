@@ -92,7 +92,7 @@ export const drawLabirynthLines = (p5: P5) => (point: TPoint, index: number, arr
 export const drawLines = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
     p5.stroke("white")
     p5.fill("white");
-    (index % 3 === 0)
+    (index % 7 === 0)
         ?
         p5.line(point.x, point.y, point.x + p5.random(5, 40), point.y) :
         p5.line(point.x, point.y, point.x, point.y + p5.random(5, 40))
@@ -148,7 +148,7 @@ export const drawChars = (p5: P5) => (point: TPoint, index: number, array: TPoin
     p5.noLoop()
 }
 
-export const drawMove = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
+export const drawRandomRect = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
     p5.noStroke()
     p5.fill(getRandomColorFrom(PALLETTES.mycustom2))
     p5.rect(point.x, point.y, 5, 5)
@@ -188,10 +188,11 @@ export const drawLinesToPoint = (p5: P5) => (point: TPoint, index: number, array
     if (p5.random() < 0.1) {
         p5.stroke("white")
         p5.line(point.x, point.y, p5.random(0, p5.width), p5.random(0, p5.height))
-
+        
     }
     p5.fill("blue")
     p5.circle(point.x, point.y, p5.random(5, 4))
+    p5.circle(point.x, point.y, p5.random(5, 20))
 
     p5.noLoop()
 

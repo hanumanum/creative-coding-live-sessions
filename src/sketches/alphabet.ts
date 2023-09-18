@@ -2,7 +2,7 @@
 
 import P5 from 'p5';
 import { TWalls } from '../lib/types';
-import { drawBuildings, drawChars, drawDiagonals, drawEntropy, drawItalic, drawLabirynthLines, drawLines, drawLinesToPoint, drawMove, drawPoint, drawPointAndLines, drawRandomCircle, drawWeb } from '../lib/drawers';
+import { drawBuildings, drawChars, drawDiagonals, drawEntropy, drawItalic, drawLabirynthLines, drawLines, drawLinesToPoint, drawRandomRect, drawPoint, drawPointAndLines, drawRandomCircle, drawWeb } from '../lib/drawers';
 import { circularArray } from '../lib/data.structures';
 import { textGarden } from '../lib/gardens';
 
@@ -15,18 +15,18 @@ const walls: TWalls = {
 const text = "Մարդ"
 
 const drawers = circularArray([
+    //drawLines,
     drawLinesToPoint,
     drawPointAndLines,
     drawEntropy,
-    drawMove,
+    drawRandomRect,
     drawBuildings,
     drawChars,
     drawItalic,
     drawRandomCircle,
     drawDiagonals,
     drawWeb,
-    drawLabirynthLines,
-    drawLines
+    drawLabirynthLines
 ]
 )
 
