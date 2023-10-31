@@ -3,7 +3,7 @@
 import P5 from 'p5';
 import { TPoint, TWalls } from '../lib/types';
 import { PALLETTES, getRandomColorFrom } from '../lib/colors';
-import { garden_circular } from '../lib/gardens';
+import { gardenCircular } from '../lib/gardens';
 import { drawCircle, drawConnectSome, drawPoint } from '../lib/drawers';
 import { circularArray } from '../lib/data.structures';
 import { rotateAround } from '../lib/utils';
@@ -63,8 +63,8 @@ export const sacred_geometry = (p5: P5) => {
         const _drawCircle2 = drawCircle(p5)(10)
 
         p5.background(0);
-        const circle2 = garden_circular(center.x, center.y, radius, Math.PI / 3)
-        const circle3 = garden_circular(center.x, center.y, radius * 2, Math.PI / 3)
+        const circle2 = gardenCircular(center.x, center.y, radius, Math.PI / 3)
+        const circle3 = gardenCircular(center.x, center.y, radius * 2, Math.PI / 3)
         // const circle4 = garden_circular(0, 0, radius * 3, Math.PI / 6)
         const all = [center, ...circle2, ...circle3, /* ...circle4 */]
 

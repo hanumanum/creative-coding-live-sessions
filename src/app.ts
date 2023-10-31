@@ -5,5 +5,12 @@ import { hidra_world } from './sketches/hidra';
 import { vectors } from "./sketches/vectors";
 import { sacred_geometry } from './sketches/sacred.geometry';
 import { alphabets } from './sketches/alphabet';
+import { truchet_tiles } from './sketches/truchet.tiles';
+import { square_packing } from './sketches/square.packing';
+import { mandala } from './sketches/mandala';
+import { butterfly_curve } from './sketches/parametric_equations_butterfly';
+import { epicycloid } from "./sketches/parametric_equations_epicycloid";
+import { square_recursive } from "./sketches/square.packing.recursion";
+import { floatingTexts } from "./sketches/floating_texts";
 
-new P5(alphabets);
+new P5(floatingTexts);

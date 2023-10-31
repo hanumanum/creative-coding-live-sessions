@@ -3,7 +3,7 @@
 import P5 from 'p5';
 import { TPoint } from '../lib/types';
 import { PALLETTES, getRandomColorFrom } from '../lib/colors';
-import { garden_greed, garden_epicycloid, garden_circular } from '../lib/gardens';
+import { gardenGreed, gardenEpicycloid, gardenCircular } from '../lib/gardens';
 import { drawConnectAll, drawPoint, drawVertex } from '../lib/drawers';
 
 export const epicycloid = (p5: P5) => {
@@ -24,8 +24,8 @@ export const epicycloid = (p5: P5) => {
     p5.draw = () => {
         const r = 50
         const R = r * k
-        const epicycloid_points = garden_epicycloid(R, r, cx, cy);
-        const cirluclar_points = garden_circular(cx, cy, R, Math.PI/4)
+        const epicycloid_points = gardenEpicycloid(R, r, cx, cy);
+        const cirluclar_points = gardenCircular(cx, cy, R, Math.PI/4)
 
 
         p5.background("black");

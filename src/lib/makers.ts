@@ -1,9 +1,17 @@
 import P5 from 'p5';
-import { THidra, TMovableCircle, TWalls } from './types';
+import { THidra, TMovableCircle, TWalls, TPoint, TSquare } from './types';
 import { getRandomColorFrom } from './colors';
 import { getRandomNumber } from './math';
 import { Vector } from 'p5';
-import { garden_circular } from './gardens';
+import { gardenCircular } from './gardens';
+
+
+export const makeRandomPoint = (w: number, h: number): TPoint => {
+    return {
+        x: getRandomNumber(0, w),
+        y: getRandomNumber(0, h)
+    }
+}
 
 export const makeMovabele = (p5: P5) => (walls: TWalls) => (palette: string[]): TMovableCircle => {
     const movable = {
@@ -34,23 +42,39 @@ export const makeHidra = (p5: P5) => (walls: TWalls, palette: string[], minRad: 
     const hidra: THidra = {
         position: position,
         velocity: P5.Vector.random2D().setMag(p5.random(5, 25)),
-        firstAnchor: garden_circular(position.x, position.y, minRad, Math.PI),
-        firstControl: garden_circular(position.x, position.y, minRad + 20, Math.PI / 2),
-        secondControl: garden_circular(position.x, position.y, minRad + 40, Math.PI / 3),
-        secondAnchor: garden_circular(position.x, position.y, minRad + 50, Math.PI / 6),
+        firstAnchor: gardenCircular(position.x, position.y, minRad, Math.PI),
+        firstControl: gardenCircular(position.x, position.y, minRad + 20, Math.PI / 2),
+        secondControl: gardenCircular(position.x, position.y, minRad + 40, Math.PI / 3),
+        secondAnchor: gardenCircular(position.x, position.y, minRad + 50, Math.PI / 6),
         color: getRandomColorFrom(palette),
         move: (): THidra => {
             hidra.position = hidra.position.add(hidra.velocity)
 
             return {
                 ...hidra,
-                firstAnchor: garden_circular(hidra.position.x, hidra.position.y, minRad, Math.PI),
-                firstControl: garden_circular(hidra.position.x, hidra.position.y, minRad + 20, Math.PI / 2),
-                secondControl: garden_circular(hidra.position.x, hidra.position.y, minRad + 40, Math.PI / 3),
-                secondAnchor: garden_circular(hidra.position.x, hidra.position.y, minRad + 50, Math.PI / 6),
+                firstAnchor: gardenCircular(hidra.position.x, hidra.position.y, minRad, Math.PI),
+                firstControl: gardenCircular(hidra.position.x, hidra.position.y, minRad + 20, Math.PI / 2),
+                secondControl: gardenCircular(hidra.position.x, hidra.position.y, minRad + 40, Math.PI / 3),
+                secondAnchor: gardenCircular(hidra.position.x, hidra.position.y, minRad + 50, Math.PI / 6),
             } as THidra
         }
     }
 
     return hidra
+}
+
+//TODO: rename this function
+export const makeSquare = (PALETTE: string[]) => {
+    let id = 0
+    return (point: TPoint): TSquare => {
+        return {
+            id: id++,
+            x: point.x,
+            y: point.y,
+            color: getRandomColorFrom(PALETTE),
+            size: 1, //getRandomNumber(2,25),
+            stop: false,
+            valocity: 1// getRandomNumber(2, 10)
+        }
+    }
 }

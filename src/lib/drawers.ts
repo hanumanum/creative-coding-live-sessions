@@ -1,8 +1,8 @@
 import P5 from 'p5';
-import { TEllipse, TMovableCircle, TPoint, THidra } from './types';
+import { TEllipse, TMovableCircle, TPoint, THidra, TSquare } from './types';
 import { PALLETTES, getRandomColorFrom } from './colors';
 import { getNRandomsFromArray } from './utils';
-import {circularArray} from './data.structures';
+import { circularArray } from './data.structures';
 
 export const drawEllipse = (p5: P5) => (ellipse: TEllipse) => {
     p5.strokeWeight(1);
@@ -53,8 +53,9 @@ export const drawMovable = (p5: P5) => (movable: TMovableCircle) => {
     p5.ellipse(movable.position.x, movable.position.y, movable.size)
 }
 
-export const drawHidra = (p5: P5) => (hidra: THidra) => {
+export const drawHidra = (p5: P5, fill: boolean) => (hidra: THidra) => {
 
+    (fill) ? p5.fill("white") : p5.noFill()
     p5.stroke(hidra.color)
     hidra.firstAnchor.forEach((anchor1, index) => {
         const firstContr = p5.random(hidra.firstControl)
@@ -135,10 +136,10 @@ export const drawBuildings = (p5: P5) => (point: TPoint, index: number, array: T
     p5.point(point.x, point.y)
 }
 
-export const drawChars = (p5: P5) => (point: TPoint, index: number, array: TPoint[])  => {
+export const drawChars = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
     const text = "Մարդ"
     const textCircular = circularArray(text.split(""))
-    
+
     if (index % 2 === 0)
         return
     p5.textSize(p5.random(2, 15));
@@ -188,12 +189,102 @@ export const drawLinesToPoint = (p5: P5) => (point: TPoint, index: number, array
     if (p5.random() < 0.1) {
         p5.stroke("white")
         p5.line(point.x, point.y, p5.random(0, p5.width), p5.random(0, p5.height))
-        
+
     }
     p5.fill("blue")
     p5.circle(point.x, point.y, p5.random(5, 4))
     p5.circle(point.x, point.y, p5.random(5, 20))
 
     p5.noLoop()
+
+}
+
+//TODO: rename this function
+export const drawSquareEsim = (p5: P5, PALETTE: string[]) => (square: TSquare): void => {
+    p5.push()
+    p5.stroke(square.color)
+    p5.noFill()
+    p5.rect(square.x, square.y, square.size, square.size)
+
+    if (square.size > 50) {
+        const randOffset = Math.sin(Date.now() / 1000 + square.id) * square.size //getRandomNumber(0, square.size)
+        p5.fill(square.color)
+        p5.rect(square.x, square.y, randOffset, randOffset)
+
+        const step = square.size / PALETTE.length
+        for (let i = PALETTE.length - 1; i >= 0; i--) {
+            p5.fill(PALETTE[i])
+            p5.rect(square.x, square.y, step * i, step * i)
+        }
+
+    }
+    p5.ellipse(square.x, square.y, 2, 2)
+
+    p5.pop()
+}
+
+
+const makeSubSquares = (PALETTE: string[]) => (square: TSquare): TSquare[] => {
+    const newSize = square.size / 3
+    const recSquares = []
+
+    if (Math.random() > 0.4) {
+        const lt = { ...square }
+        lt.size = newSize
+        lt.color = getRandomColorFrom(PALETTE)
+        lt.x = square.x - newSize / 2
+        lt.y = square.y - newSize / 2
+        recSquares.push(lt)
+    }
+
+    if (Math.random() > 0.4) {
+        const lb = { ...square }
+        lb.size = newSize
+        lb.color = getRandomColorFrom(PALETTE)
+        lb.x = square.x - newSize / 2
+        lb.y = square.y + newSize / 2
+        recSquares.push
+    }
+
+    if (Math.random() > 0.5) {
+        const rt = { ...square }
+        rt.size = newSize
+        rt.color = getRandomColorFrom(PALETTE)
+        rt.x = square.x + newSize / 2
+        rt.y = square.y - newSize / 2
+        recSquares.push(rt)
+    }
+
+    if (Math.random() > 0.5) {
+        const rb = { ...square }
+        rb.size = newSize
+        rb.color = getRandomColorFrom(PALETTE)
+        rb.x = square.x + newSize / 2
+        rb.y = square.y + newSize / 2
+        recSquares.push(rb)
+    }
+
+    return recSquares
+}
+
+export const drawSquare = (p5: P5, PALETTE: string[]) => (square: TSquare): void => {
+    if (square.size < 10)
+        return
+
+    p5.push()
+/*     p5.translate(square.x, square.y)
+    p5.rotate(Math.random()/10)
+ */    //p5.noStroke()
+    p5.stroke("black")
+    p5.fill(square.color)
+    p5.rect(square.x, square.y, square.size, square.size)
+    p5.pop()
+
+    const subsquares = makeSubSquares(PALETTE)(square)
+
+    for (let subs of subsquares) {
+        drawSquare(p5, PALETTE)(subs)
+    }
+
 
 }

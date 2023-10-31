@@ -39,3 +39,13 @@ export type THidra = TMovableBasic & {
     color: string,
     move?: () => THidra
 }
+
+export type TSquare = {
+    id: number,
+    x: number,
+    y: number,
+    color: string,
+    size: number,
+    stop: boolean;
+    valocity: number;
+}

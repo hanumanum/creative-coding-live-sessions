@@ -1,6 +1,6 @@
 import { PALLETTES, getRandomColorFrom } from './colors';
-import { TEllipse } from './types';
-import { getRandomNumber } from './math';
+import { TEllipse, TSquare, TWalls } from './types';
+import { getRandomNumber, isSquaresColliding } from './math';
 
 export const moveToTop = (ellipse: TEllipse): TEllipse => {
     let newY = ellipse.y - getRandomNumber(1, 3)
@@ -62,4 +62,37 @@ export const toCenter = (ellipse: TEllipse): TEllipse => {
         x,
         y
     }
+}
+
+
+export const stopSquares = (walls: TWalls) => (squares: TSquare[]): TSquare[] => {
+    for (let square1 of squares) {
+        if (square1.stop)
+            continue
+
+        const half = square1.size / 2
+        if (0 >= square1.x - half || walls.w <= square1.x + half || 0 >= square1.y - half || walls.h <= square1.y + half) {
+            square1.stop = true
+            continue
+        }
+
+        for (let square2 of squares) {
+            if (square1.id === square2.id)
+                continue
+            if (isSquaresColliding(square1)(square2))
+                square1.stop = true
+        }
+    }
+    return squares
+}
+
+
+export const growSquare = (square: TSquare) => {
+    const _square = { ...square }
+
+    if (_square.stop)
+        return _square
+    _square.size += _square.valocity
+
+    return _square
 }

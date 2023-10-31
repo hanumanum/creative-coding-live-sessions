@@ -6,7 +6,7 @@ import { TPoint, TMovableCircle } from '../lib/types';
 import { PALLETTES, getRandomColorFrom } from '../lib/colors';
 import { getRandomNumber } from '../lib/math';
 import { bounceFromWalls, fillIf, toPoint } from '../lib/mutators.vector';
-import { makeMovabele } from '../lib/makers';
+import { makeMovabele, makeRandomPoint } from '../lib/makers';
 import { drawMovable } from '../lib/drawers';
 
 const walls = {
@@ -25,7 +25,7 @@ export const vectors = (p5: P5) => {
     }
     let movables: TMovableCircle[] = Array.from({ length }, () => makeMovabele(p5)(walls)(palette))
     const move = (movable: TMovableCircle) => movable.move()
-    const _fillIf = fillIf(p5)(focal)
+    
     const _bounceFromWalls = bounceFromWalls(walls)
     const _toPoint = toPoint(p5)
     const _drawMovable = drawMovable(p5)
@@ -36,7 +36,9 @@ export const vectors = (p5: P5) => {
     };
 
     p5.draw = () => {
-        p5.background("black");
+        const _fillIf = fillIf(p5)(focal)
+    
+        p5.background(0, 100);
         p5.noFill()
 
         movables = movables
@@ -44,10 +46,13 @@ export const vectors = (p5: P5) => {
             .map(_fillIf(100))
             .map(_bounceFromWalls)
 
-        if (p5.mouseIsPressed) {
-            focal = { x: p5.mouseX, y: p5.mouseY }
-            movables = movables
+        if (p5.frameCount % 500===0) {
+            focal = makeRandomPoint(walls.w, walls.h)
+            for(let i=0; i<p5.random(1, 10); i++){
+                movables = movables
                 .map(_toPoint(focal))
+
+            }
         }
 
         movables.forEach(_drawMovable)

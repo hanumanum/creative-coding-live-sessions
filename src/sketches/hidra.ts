@@ -15,10 +15,10 @@ const length = 20
 const palette = PALLETTES.greengray
 
 export const hidra_world = (p5: P5) => {
-    let hidras = Array.from({ length }, () => makeHidra(p5)(walls, palette, 20))
+    let hidras = Array.from({ length }, () => makeHidra(p5)(walls, palette, 10))
     const move = (hidra: THidra) => hidra.move()
     const bounce = bounceFromWalls(walls)
-    const draw = drawHidra(p5)
+    const draw = drawHidra(p5, true)
 
     p5.setup = () => {
         const canvas = p5.createCanvas(walls.w, walls.h);
@@ -29,8 +29,7 @@ export const hidra_world = (p5: P5) => {
 
     p5.draw = () => {
         p5.background(0, 20);
-        //p5.noFill() //TODO: remove at the end
-        
+        p5.noFill()        
         hidras = hidras
             .map(move)
             .map(bounce)
