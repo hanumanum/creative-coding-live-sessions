@@ -1,6 +1,6 @@
 import P5 from 'p5';
 import { TPoint, TSquare, TWalls } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { gardenCircular, gardenGreed, gardenRandom } from '../lib/gardens';
 import { getRandomNumber, isPointInSquare, scanForFreePoints, seekFreeRandomPoint } from '../lib/math';
 import { drawSquareEsim, drawSquare } from '../lib/drawers';
@@ -23,7 +23,7 @@ const squares: TSquare[] = [...gardenGreed(walls.w, walls.h, 200, 200)]
             id: 0,
             x: point.x,
             y: point.y,
-            color: getRandomColorFrom(PALETTE),
+            color: pickRandomColor(PALETTE),
             size: 200, //getRandomNumber(2,25),
             stop: false,
             valocity: 1// getRandomNumber(2, 10)
@@ -34,7 +34,7 @@ const square: TSquare = {
     id: 0,
     x: walls.w / 2,
     y: walls.h / 2,
-    color: getRandomColorFrom(PALETTE),
+    color: pickRandomColor(PALETTE),
     size: 500, //getRandomNumber(2,25),
     stop: false,
     valocity: 1// getRandomNumber(2, 10)

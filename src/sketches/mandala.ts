@@ -1,5 +1,5 @@
 import P5 from 'p5';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { rotateAround } from '../lib/utils';
 
 const centerX = 450
@@ -26,7 +26,7 @@ export const mandala = (p5: P5) => {
 
     p5.draw = () => {
 
-        p5.stroke(getRandomColorFrom(PALLETTES.rainbow));
+        p5.stroke(pickRandomColor(PALLETTES.rainbow));
 
         rotateAround(p5, centerX, centerY, angle, () => {
             //p5.text("Ա", 0, 0)

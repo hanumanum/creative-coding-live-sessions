@@ -1,6 +1,6 @@
 import P5 from 'p5';
 import { TPoint, TSquare, TWalls } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { gardenCircular, gardenGreed, gardenRandom } from '../lib/gardens';
 import { getRandomNumber, isPointInSquare, scanForFreePoints, seekFreeRandomPoint } from '../lib/math';
 import { drawSquareEsim } from '../lib/drawers';

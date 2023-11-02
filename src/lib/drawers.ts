@@ -1,6 +1,6 @@
 import P5 from 'p5';
 import { TEllipse, TMovableCircle, TPoint, THidra, TSquare } from './types';
-import { PALLETTES, getRandomColorFrom } from './colors';
+import { PALLETTES, pickRandomColor } from './colors';
 import { getNRandomsFromArray } from './utils';
 import { circularArray } from './data.structures';
 
@@ -24,7 +24,7 @@ export const drawConnectAll = (p5: P5) => (points: TPoint[]) => {
     points.forEach((point, index) => {
         points.forEach((point2, index2) => {
             if (index !== index2) {
-                p5.stroke(getRandomColorFrom(PALLETTES.rainbow))
+                p5.stroke(pickRandomColor(PALLETTES.rainbow))
                 p5.line(point.x, point.y, point2.x, point2.y)
             }
         })
@@ -71,7 +71,7 @@ export const drawHidra = (p5: P5, fill: boolean) => (hidra: THidra) => {
 
 
 export const drawRandomCircle = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
-    const color = getRandomColorFrom(PALLETTES.rainbow)
+    const color = pickRandomColor(PALLETTES.rainbow)
     p5.stroke(color)
     p5.noFill()
 
@@ -118,7 +118,7 @@ export const drawItalic = (p5: P5) => (point: TPoint, index: number, array: TPoi
 }
 
 export const drawWeb = (p5: P5, dist: number = 60)   => (point: TPoint, index: number, array: TPoint[]) => {
-    const color = getRandomColorFrom(PALLETTES.rainbow)
+    const color = pickRandomColor(PALLETTES.rainbow)
     p5.stroke(color)
     let randomPoints = getNRandomsFromArray(array.length / 50)(array)
     randomPoints = randomPoints.filter((p) => p5.dist(p.x, p.y, point.x, point.y) < dist)
@@ -131,7 +131,7 @@ export const drawWeb = (p5: P5, dist: number = 60)   => (point: TPoint, index: n
 
 
 export const drawWebDinamic = (p5: P5, dist: number = 60)   => (point: TPoint, index: number, array: TPoint[]) => {
-    const color = getRandomColorFrom(PALLETTES.rainbow)
+    const color = pickRandomColor(PALLETTES.rainbow)
     p5.stroke(color)
     let randomPoints = getNRandomsFromArray(array.length / 50)(array)
     randomPoints = randomPoints.filter((p) => p5.dist(p.x, p.y, point.x, point.y) < dist)
@@ -164,13 +164,13 @@ export const drawChars = (p5: P5) => (point: TPoint, index: number, array: TPoin
 
 export const drawRandomRect = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
     p5.noStroke()
-    p5.fill(getRandomColorFrom(PALLETTES.mycustom2))
+    p5.fill(pickRandomColor(PALLETTES.mycustom2))
     p5.rect(point.x, point.y, 5, 5)
 }
 
 export const drawEntropy = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
     p5.noStroke()
-    p5.fill(getRandomColorFrom(PALLETTES.pastel))
+    p5.fill(pickRandomColor(PALLETTES.pastel))
     p5.rect(point.x, point.y, p5.random(2, 5), p5.random(2, 5))
     point.x += p5.random(-0.5, 0.5)
     point.y += p5.random(-2, 2)
@@ -244,7 +244,7 @@ const makeSubSquares = (PALETTE: string[]) => (square: TSquare): TSquare[] => {
     if (Math.random() > 0.4) {
         const lt = { ...square }
         lt.size = newSize
-        lt.color = getRandomColorFrom(PALETTE)
+        lt.color = pickRandomColor(PALETTE)
         lt.x = square.x - newSize / 2
         lt.y = square.y - newSize / 2
         recSquares.push(lt)
@@ -253,7 +253,7 @@ const makeSubSquares = (PALETTE: string[]) => (square: TSquare): TSquare[] => {
     if (Math.random() > 0.4) {
         const lb = { ...square }
         lb.size = newSize
-        lb.color = getRandomColorFrom(PALETTE)
+        lb.color = pickRandomColor(PALETTE)
         lb.x = square.x - newSize / 2
         lb.y = square.y + newSize / 2
         recSquares.push
@@ -262,7 +262,7 @@ const makeSubSquares = (PALETTE: string[]) => (square: TSquare): TSquare[] => {
     if (Math.random() > 0.5) {
         const rt = { ...square }
         rt.size = newSize
-        rt.color = getRandomColorFrom(PALETTE)
+        rt.color = pickRandomColor(PALETTE)
         rt.x = square.x + newSize / 2
         rt.y = square.y - newSize / 2
         recSquares.push(rt)
@@ -271,7 +271,7 @@ const makeSubSquares = (PALETTE: string[]) => (square: TSquare): TSquare[] => {
     if (Math.random() > 0.5) {
         const rb = { ...square }
         rb.size = newSize
-        rb.color = getRandomColorFrom(PALETTE)
+        rb.color = pickRandomColor(PALETTE)
         rb.x = square.x + newSize / 2
         rb.y = square.y + newSize / 2
         recSquares.push(rb)

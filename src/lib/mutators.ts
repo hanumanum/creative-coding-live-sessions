@@ -1,4 +1,4 @@
-import { PALLETTES, getRandomColorFrom } from './colors';
+import { PALLETTES, pickRandomColor } from './colors';
 import { TEllipse, TSquare, TWalls } from './types';
 import { getRandomNumber, isSquaresColliding } from './math';
 
@@ -17,7 +17,7 @@ export const moveToTop = (ellipse: TEllipse): TEllipse => {
 export const changeColor = (ellipse: TEllipse): TEllipse => {
     return {
         ...ellipse,
-        color: getRandomColorFrom(PALLETTES.rainbow)
+        color: pickRandomColor(PALLETTES.rainbow)
     }
 }
 

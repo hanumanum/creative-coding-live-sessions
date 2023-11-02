@@ -2,7 +2,7 @@
 
 import P5 from 'p5';
 import { TPoint, TWalls } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { gardenCircular } from '../lib/gardens';
 import { drawCircle, drawConnectSome, drawPoint } from '../lib/drawers';
 import { circularArray } from '../lib/data.structures';

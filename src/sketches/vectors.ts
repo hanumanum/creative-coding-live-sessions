@@ -3,7 +3,7 @@
 
 import P5, { Vector } from 'p5';
 import { TPoint, TMovableCircle } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { getRandomNumber } from '../lib/math';
 import { bounceFromWalls, fillIf, toPoint } from '../lib/mutators.vector';
 import { makeMovabele, makeRandomPoint } from '../lib/makers';

@@ -2,7 +2,7 @@
 
 import P5 from 'p5';
 import { TPoint } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { gardenGreed, gardenButterfly } from '../lib/gardens';
 import { drawPoint, drawVertex } from '../lib/drawers';
 
@@ -32,7 +32,7 @@ export const butterfly_curve = (p5: P5) => {
     
             const buttefly_points = gardenButterfly(point.x, point.y, zoom, p1);
 
-            p5.stroke(getRandomColorFrom(PALLETTES.rainbow))
+            p5.stroke(pickRandomColor(PALLETTES.rainbow))
             p5.beginShape()
             buttefly_points.forEach(_drawVertex);
             p5.endShape()

@@ -17,6 +17,28 @@ export const PALLETTES = {
     mycustom2: ["#fd00ff", "#fdff00", "#00ff38", "#00f9ff", "#3c00ff"]
 }
 
-export const getRandomColorFrom = (pallete: string[]) => {
+//TODO: change name and move to another place, this is not color specific
+export const pickRandomColor = (pallete: string[]) => {
     return pallete[Math.floor(Math.random() * pallete.length)]
+}
+
+export const pickRandomTuple = (pallete: string[]) => (tupleSize: number) => {
+    const tuple = []
+    const color1 = pickRandomColor(pallete)
+    tuple.push(color1)
+    if (tupleSize === 1)
+        return tuple
+
+    let color2 = pickRandomColor(pallete)
+    while (tupleSize !== tuple.length) {
+        if (!tuple.includes(color2)) {
+            tuple.push(color2)
+        }
+        else{
+            color2 = pickRandomColor(pallete)
+        }
+    }
+
+    return tuple
+
 }

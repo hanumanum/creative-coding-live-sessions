@@ -6,7 +6,7 @@ import P5 from 'p5';
 import { TPoint, TWalls } from '../lib/types';
 import { gardenGreed } from '../lib/gardens';
 import { getRandomNumber } from '../lib/math';
-import { getRandomColorFrom } from '../lib/colors';
+import { pickRandomColor } from '../lib/colors';
 import { PALLETTES } from '../lib/colors';
 import { drawPoint } from '../lib/drawers';
 

@@ -2,7 +2,7 @@
 
 import P5 from 'p5';
 import { TPoint } from '../lib/types';
-import { PALLETTES, getRandomColorFrom } from '../lib/colors';
+import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { gardenGreed, gardenEpicycloid, gardenCircular } from '../lib/gardens';
 import { drawConnectAll, drawPoint, drawVertex } from '../lib/drawers';
 
@@ -29,7 +29,7 @@ export const epicycloid = (p5: P5) => {
 
 
         p5.background("black");
-        p5.stroke(getRandomColorFrom(PALLETTES.rainbow))
+        p5.stroke(pickRandomColor(PALLETTES.rainbow))
         p5.noFill()
 
         p5.beginShape()
