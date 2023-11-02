@@ -12,5 +12,7 @@ import { butterfly_curve } from './sketches/parametric_equations_butterfly';
 import { epicycloid } from "./sketches/parametric_equations_epicycloid";
 import { square_recursive } from "./sketches/square.packing.recursion";
 import { floatingTexts } from "./sketches/floating_texts";
+import { alphabets_web } from './sketches/alphabet_web';
+import { alphabetsSpielArt } from "./sketches/alphabets.SPIELART";
 
-new P5(floatingTexts);
+new P5(alphabetsSpielArt);

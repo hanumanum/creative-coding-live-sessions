@@ -3,8 +3,16 @@ export const circularArray = (arr: any[]) => {
     const _arr = [...arr]
 
     const next = () => {
-        index = (index === arr.length - 1) ? 0 : index + 1
-        return same()
+        let value = null
+        if (index === arr.length - 1) {
+            value = _arr[index]
+            index = 0
+        }
+        else {
+            value = _arr[index]
+            index++
+        }
+        return value
     }
 
     const same = () => {
@@ -13,6 +21,7 @@ export const circularArray = (arr: any[]) => {
 
     return {
         next,
-        same
+        same,
+        length: _arr.length
     }
 }

@@ -117,8 +117,7 @@ export const drawItalic = (p5: P5) => (point: TPoint, index: number, array: TPoi
     drawPoint(p5)(point)
 }
 
-export const drawWeb = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
-    const dist = 80;
+export const drawWeb = (p5: P5, dist: number = 60)   => (point: TPoint, index: number, array: TPoint[]) => {
     const color = getRandomColorFrom(PALLETTES.rainbow)
     p5.stroke(color)
     let randomPoints = getNRandomsFromArray(array.length / 50)(array)
@@ -129,6 +128,20 @@ export const drawWeb = (p5: P5) => (point: TPoint, index: number, array: TPoint[
     })
     p5.noLoop()
 }
+
+
+export const drawWebDinamic = (p5: P5, dist: number = 60)   => (point: TPoint, index: number, array: TPoint[]) => {
+    const color = getRandomColorFrom(PALLETTES.rainbow)
+    p5.stroke(color)
+    let randomPoints = getNRandomsFromArray(array.length / 50)(array)
+    randomPoints = randomPoints.filter((p) => p5.dist(p.x, p.y, point.x, point.y) < dist)
+
+    randomPoints.forEach(p => {
+        p5.line(point.x, point.y, p.x, p.y)
+    })
+    //p5.noLoop()
+}
+
 
 export const drawBuildings = (p5: P5) => (point: TPoint, index: number, array: TPoint[]) => {
     p5.stroke(p5.sin(p5.frameCount / 20) * (index % 11) * 20 + 100)
@@ -272,9 +285,9 @@ export const drawSquare = (p5: P5, PALETTE: string[]) => (square: TSquare): void
         return
 
     p5.push()
-/*     p5.translate(square.x, square.y)
-    p5.rotate(Math.random()/10)
- */    //p5.noStroke()
+    /*     p5.translate(square.x, square.y)
+        p5.rotate(Math.random()/10)
+     */    //p5.noStroke()
     p5.stroke("black")
     p5.fill(square.color)
     p5.rect(square.x, square.y, square.size, square.size)

@@ -1,17 +1,13 @@
-//https://fonter.am/en/fonts/free-sans
-
 import P5 from 'p5';
-import { TPoint, TWalls } from '../lib/types';
-import { gardenRandom, gardenCircular, gardenEpicycloid, gardenSpiral, gardenGreed } from '../lib/gardens';
+import { TCharPoint, TPoint, TWalls } from '../lib/types';
 import { drawPoint } from '../lib/drawers';
-import { getRandomNumber } from '../lib/math';
+import { gardenGreed } from '../lib/gardens';
 
-type TCharPoint = TPoint & { char: string }
 type TNullify = (item: any) => any
 
-const DEBUG_MODE = false
+const DEBUG_MODE = true
 
-const pontsHandPicked = [
+const pointsHandPicked = [
     {
         "x": 1827,
         "y": 925
@@ -619,7 +615,7 @@ export const floatingTexts = (p5: P5) => {
 
     const curve_tmp = []
 
-    const curve = pontsHandPicked.reverse()//gardenRandom(50, walls.w, walls.h) //(gardenSpiral(walls.w / 2, walls.h / 2, 50, 0.72)).slice(100, 15000)
+    const curve = gardenGreed(walls.w, walls.h, 45, 100) //pointsHandPicked.reverse()//gardenRandom(50, walls.w, walls.h) //(gardenSpiral(walls.w / 2, walls.h / 2, 50, 0.72)).slice(100, 15000)
     let charMatrix = makeCharsRow(curve)
 
     p5.setup = () => {
@@ -642,7 +638,7 @@ export const floatingTexts = (p5: P5) => {
         charMatrix = (characters.length === 0) ? shiftCharsLeft(charMatrix, 1) : addCharToRow(charMatrix, characters.shift())
 
         p5.push()
-        p5.textSize(10)
+        p5.textSize(15)
         p5.noStroke()
         p5.fill(255)
         p5.text(typedText.join(""), 10, walls.h - 10)
@@ -669,6 +665,7 @@ export const floatingTexts = (p5: P5) => {
     }
 
     p5.mousePressed = () => {
+        return
         if (DEBUG_MODE) {
             curve_tmp.push({ x: p5.mouseX, y: p5.mouseY })
             console.log(curve_tmp)

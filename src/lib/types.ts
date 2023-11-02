@@ -49,3 +49,11 @@ export type TSquare = {
     stop: boolean;
     valocity: number;
 }
+
+export type TCharPoint = TPoint & { char: string }
+
+export type TLetterPoint = TCharPoint & { 
+        size: number, 
+        dx: number,
+        dy: number
+    }
