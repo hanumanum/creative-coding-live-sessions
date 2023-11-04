@@ -14,6 +14,5 @@ import { square_recursive } from "./sketches/square.packing.recursion";
 import { floatingTexts } from "./sketches/floating_texts";
 import { alphabets_web } from './sketches/alphabet_web';
 import { alphabetsSpielArt } from "./sketches/alphabets.SPIELART";
-import { alphabetsSpielArt_Draft } from './sketches/alphabets.SPIELART.draft';
 
 new P5(alphabetsSpielArt);
