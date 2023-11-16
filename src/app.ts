@@ -16,5 +16,6 @@ import { SPIELART_alphabetsMandala } from "./sketches/SPIELART.alphabets";
 import { SPIELART_floatingTexts } from "./sketches/SPIELART.floating_texts";
 import { space } from "./sketches/simple.space";
 import { mandalaLightning } from './sketches/mandala.lightning';
+import { lightning } from './sketches/lightning';
 
-new P5(mandalaLightning);
+new P5(SPIELART_alphabetsMandala);

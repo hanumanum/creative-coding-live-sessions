@@ -1,7 +1,7 @@
 import { makeRandomPoint } from './makers';
 import { TPoint, TWalls } from "./types";
 import P5 from 'p5';
-import { getRandomNumber } from './math';
+import { dist, getRandomNumber, randomPointBetween } from './math';
 
 export const gardenGreed = (w: number, h: number, stepW: number, stepH: number, startPoint: TPoint = { x: 0, y: 0 }): TPoint[] => {
     const points: TPoint[] = [];
@@ -108,16 +108,31 @@ export const gardenSpiral = (cx: number, cy: number, radius: number, angle: numb
     return points;
 }
 
+export const gardenChainBetween2Points2 = (p1: TPoint, p2: TPoint): TPoint[] => {
+    const TPoint: TPoint[] = [p1]
+    const iterations = 20
+
+    let nextPoint = randomPointBetween(p1, p2)
+
+    for (let i = 0; i < iterations; i++) {
+        TPoint.push(nextPoint)
+
+        nextPoint = randomPointBetween(nextPoint, p2)
+    }
+
+    TPoint.push(p2)
+    return TPoint;
+
+}
 
 export const gardenChainBetween2Points = (p1: TPoint, p2: TPoint): TPoint[] => {
     const TPoint: TPoint[] = [p1]
-    const iterations = 100
+    const iterations = 20
 
     let nextPoint = {
         x: getRandomNumber(p1.x, p2.x),
         y: getRandomNumber(p1.y, p2.y)
     }
-
 
     for (let i = 0; i < iterations; i++) {
         TPoint.push(nextPoint)

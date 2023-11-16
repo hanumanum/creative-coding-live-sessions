@@ -51,3 +51,14 @@ export const scanForFreePoints = (walls: TWalls, squares: TSquare[], step: numbe
     }
     return ponts
 }
+
+export const dist = (p1: TPoint, p2: TPoint) => {
+    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2))
+}
+
+export const randomPointBetween = (p1: TPoint, p2: TPoint): TPoint => {
+    return {
+        x: getRandomNumber(p1.x, p2.x),
+        y: getRandomNumber(p1.y, p2.y)
+    }
+}
