@@ -20,6 +20,3 @@ export const ellipseFromPoint = (point: TPoint): TEllipse => {
     }
 }
 
-export const getNRandomsFromArray = (n: number) => (array: any[]) => {
-    return Array.from({ length: n }, () => array[Math.floor(Math.random() * array.length)])
-}

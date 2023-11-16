@@ -1,7 +1,7 @@
 import P5 from 'p5';
 import { TEllipse, TMovableCircle, TPoint, THidra, TSquare } from './types';
 import { PALLETTES, pickRandomColor } from './colors';
-import { getNRandomsFromArray } from './utils';
+import { getNRandomsFromArray } from './arrays';
 import { circularArray } from './data.structures';
 
 export const drawEllipse = (p5: P5) => (ellipse: TEllipse) => {
