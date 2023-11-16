@@ -607,7 +607,7 @@ const printItem = (p5: P5) => (charPoint: TCharPoint, index: number, array: any[
     }
 }
 
-export const floatingTexts = (p5: P5) => {
+export const SPIELART_floatingTexts = (p5: P5) => {
     const characters = "I am a text".split("")
     const pushChar = (char: any) => characters.push(char)
     //const curve: { x: number, y: number }[] =  gardenEpicycloid(200, 111, walls.w/2, walls.h/2) //garden_circular(walls.w / 2, walls.h / 2, 400, 0.09)

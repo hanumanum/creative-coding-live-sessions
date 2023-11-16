@@ -14,7 +14,7 @@ const walls: TWalls = {
 const length = 20
 const palette = PALLETTES.greengray
 
-export const hidra_world = (p5: P5) => {
+export const hidraWorld = (p5: P5) => {
     let hidras = Array.from({ length }, () => makeHidra(p5)(walls, palette, 10))
     const move = (hidra: THidra) => hidra.move()
     const bounce = bounceFromWalls(walls)

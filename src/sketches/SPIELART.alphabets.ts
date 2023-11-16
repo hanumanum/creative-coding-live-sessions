@@ -94,9 +94,9 @@ const drawLetterMandala = (p5: P5) => (center: TPoint) => (divider: number) => (
 
 }
 
-export const alphabetsSpielArt = (p5: P5) => {
+export const SPIELART_alphabetsMandala = (p5: P5) => {
     let palette = PALLETTES.fullrainbow
-    let alphabetName = "Arabic"
+    let alphabetName = "Armenian"
     let currentAlphabet = circularArray(alphabets[alphabetName])
     let frameRate = 30
     let canvas

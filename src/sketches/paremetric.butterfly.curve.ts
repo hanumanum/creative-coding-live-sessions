@@ -7,7 +7,7 @@ import { gardenGreed, gardenButterfly } from '../lib/gardens';
 import { drawPoint, drawVertex } from '../lib/drawers';
 
 
-export const butterfly_curve = (p5: P5) => {
+export const paremetricButterflyCurve = (p5: P5) => {
     const garden = gardenGreed(p5.windowWidth, p5.windowHeight, 150, 150);
     const _drawPoint = drawPoint(p5);
     const _drawVertex = drawVertex(p5)

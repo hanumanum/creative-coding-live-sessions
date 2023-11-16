@@ -50,7 +50,7 @@ const centrizePoint = (p5: P5, walls: TWalls) => (point: TPoint, squares: TSquar
     return point
 }
 
-export const square_packing = (p5: P5) => {
+export const squarePacking = (p5: P5) => {
     const allSuqare = walls.w * walls.h
     const _makeSquare = makeSquare(PALETTE)
     const _drawSquare = drawSquareEsim(p5, PALETTE)

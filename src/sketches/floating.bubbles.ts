@@ -19,7 +19,7 @@ const length = 1000
 const palette = PALLETTES.cyber
 
 
-export const vectors = (p5: P5) => {
+export const floatingBubbles = (p5: P5) => {
     let focal = {
         x: 0, y: 0
     }

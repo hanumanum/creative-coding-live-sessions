@@ -30,7 +30,7 @@ const drawers = circularArray([
 ]
 )
 
-export const alphabets = (p5: P5) => {
+export const fontsGenerative = (p5: P5) => {
     let currentFunction = (drawers.next())(p5)
     const points = []
     let mutatedPoints = []

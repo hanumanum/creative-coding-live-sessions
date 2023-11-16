@@ -12,7 +12,7 @@ const ellipseAndRect = (p5: P5, radius1: number, radius2: number, w: number, h: 
     p5.rect(0, 0, w, h);
 }
 
-export const mandala = (p5: P5) => {
+export const mandalaSimple = (p5: P5) => {
 
     p5.setup = () => {
         const canvas = p5.createCanvas(900, 900);

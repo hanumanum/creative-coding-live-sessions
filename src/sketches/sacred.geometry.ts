@@ -47,7 +47,8 @@ const filters = circularArray([
 
 const clrs = circularArray(palette)
 
-export const sacred_geometry = (p5: P5) => {
+//TODO: complete this
+export const sacredGeometry = (p5: P5) => {
     let radius = 80
     let isLooping = true
 

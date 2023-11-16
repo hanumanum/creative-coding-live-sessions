@@ -41,7 +41,7 @@ const square: TSquare = {
 }
 
 
-export const square_recursive = (p5: P5) => {
+export const squarePackingRecursive = (p5: P5) => {
 
     p5.setup = () => {
         const canvas = p5.createCanvas(walls.w, walls.h);

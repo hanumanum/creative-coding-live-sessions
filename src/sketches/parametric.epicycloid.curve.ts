@@ -6,7 +6,7 @@ import { PALLETTES, pickRandomColor } from '../lib/colors';
 import { gardenGreed, gardenEpicycloid, gardenCircular } from '../lib/gardens';
 import { drawConnectAll, drawPoint, drawVertex } from '../lib/drawers';
 
-export const epicycloid = (p5: P5) => {
+export const parametricEpicycloidCurve = (p5: P5) => {
     const _drawPoint = drawPoint(p5);
     const _drawVertex = drawVertex(p5)
     const _drawConnectAll = drawConnectAll(p5);

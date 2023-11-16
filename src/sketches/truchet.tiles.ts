@@ -132,15 +132,11 @@ const nextTOrientation = (tile) => {
         ...tile,
         orientation: (tile.orientation + 1) % 2
     }
-} 
-
-
+}
 
 const grid = gardenGreed(walls.w, walls.h, gridSize, gridSize)
-let tiles = grid.map(randomArcTiles)
-let points = [...grid]
 
-export const truchet_tiles = (p5: P5) => {
+export const truchetTiles = (p5: P5) => {
     p5.setup = () => {
         const canvas = p5.createCanvas(walls.w, walls.h);
         canvas.parent("app");
@@ -157,7 +153,7 @@ export const truchet_tiles = (p5: P5) => {
         //tiles = tiles.map(nextTOrientation)
 
         tiles.forEach(drawTruchetArcs(p5))
-        //grid.forEach(drawPoint(p5))
+        grid.forEach(drawPoint(p5))
 
         //p5.noLoop()
 

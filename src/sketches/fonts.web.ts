@@ -16,7 +16,7 @@ const findRight = (p5: P5) => (points: TPoint[]) => {
     return p5.max(points.map(point => point.x))
 }
 
-export const alphabets_web = (p5: P5) => {
+export const fontsWeb = (p5: P5) => {
     let y = walls.h - walls.h/3
     let paddings = 50
     let points = []
